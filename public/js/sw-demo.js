@@ -1,6 +1,10 @@
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js', { scope: '/' });
-    mainMessage('notify', 'A very simple case');
+    navigator.serviceWorker.register('service-worker.js', { scope: '/' })
+    .then(function(reg) {
+        mainMessage('notify', 'Service worker is started');
+    }).catch(function(error) {
+        mainMessage('alert', 'Service worker registration failed with ' + error);
+    });
 } else {
     mainMessage('alert', 'You browser do not support Service Worker');
 }
